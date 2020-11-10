@@ -1,8 +1,8 @@
 # RentalCar
 
 Thư mục view chưa được tạo.
-Model: 
-Object: 
+Thu muc Model: 
+Thu muc Object: 
 
 
 link sử dụng github: https://ngocminhtran.com/2019/05/22/su-dung-git-va-github-trong-android-studio-3-x/
