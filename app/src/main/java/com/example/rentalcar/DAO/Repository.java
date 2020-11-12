@@ -9,6 +9,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import com.example.rentalcar.object.User;
+import com.example.rentalcar.object.branch;
+import com.example.rentalcar.object.vehicle;
+import com.example.rentalcar.object.version;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +42,7 @@ public class Repository extends SQLiteOpenHelper {
         db.execSQL(queryCreateUser);
 
         //Create table vehicle
-        String queryCreateVehicle = " CREATE TABLE IF NOT EXISTS vehicle(v_id INTEGER PRIMARY KEY AUTOINCREMENT, v_licensePlate TEXT, " +
+        String queryCreateVehicle = " CREATE TABLE IF NOT EXISTS vehicle(v_id INTEGER PRIMARY KEY AUTOINCREMENT, v_name TEXT, v_licensePlate TEXT, " +
                 " v_seat INTEGER, v_costPerDate FLOAT, v_costPerKm FLOAT, v_image TEXT, v_status INTEGER, version INTEGER, " +
                 " branch INTEGER, color INTEGER, fuel INTEGER, gear INTEGER); ";
         db.execSQL(queryCreateVehicle);
@@ -193,6 +196,131 @@ public class Repository extends SQLiteOpenHelper {
 
     //region Area code for Uyen My
 
+    /**
+     * Write into DB
+     * @param sqlString
+     */
+    public void writeData(String sqlString)
+    {
+        SQLiteDatabase database = getWritableDatabase();
+        database.execSQL(sqlString);
+    }
+
+    /**
+     * read into DB
+     * @param sqlString
+     * @return
+     */
+    public Cursor getData(String sqlString)
+    {
+        SQLiteDatabase database = getReadableDatabase();
+        return database.rawQuery(sqlString, null);
+    }
+
+    public void insertDataCar()
+    {
+        writeData("INSERT INTO branch VALUES('','BMW', 'bmw.png')");
+        writeData("INSERT INTO branch VALUES('','Porscher', 'porsche.png')");
+        writeData("INSERT INTO branch VALUES('','Toyota', 'toyota.png')");
+        writeData("INSERT INTO branch VALUES('','Honda', 'honda.png')");
+
+        writeData("INSERT INTO version VALUES('','2015')");
+        writeData("INSERT INTO version VALUES('','2016')");
+        writeData("INSERT INTO version VALUES('','2017')");
+        writeData("INSERT INTO version VALUES('','2018')");
+        writeData("INSERT INTO version VALUES('','2019')");
+        writeData("INSERT INTO version VALUES('','2020')");
+
+        writeData("INSERT INTO color VALUES('','Black')");
+        writeData("INSERT INTO color VALUES('','White')");
+        writeData("INSERT INTO color VALUES('','Silver')");
+        writeData("INSERT INTO color VALUES('','Red')");
+        writeData("INSERT INTO color VALUES('','Darkblue')");
+
+        writeData("INSERT INTO fuel VALUES('','Gasoline')");
+        writeData("INSERT INTO fuel VALUES('','Oil')");
+
+        writeData("INSERT INTO gear VALUES('','Manual')");
+        writeData("INSERT INTO gear VALUES('','Automatic')");
+        //v_id INTEGER PRIMARY KEY AUTOINCREMENT, v_name TEXT ,v_licensePlate TEXT, " +
+        //                " v_seat INTEGER, v_costPerDate FLOAT, v_costPerKm FLOAT, v_image TEXT, v_status INTEGER, version INTEGER, " +
+        //                " branch INTEGER, color INTEGER, fuel INTEGER, gear INTEGER
+
+        writeData("INSERT INTO vehicle VALUES('','Altis 1.8G CVT','65A1-262.95','4','50','3','Toyota_Altis_1.8G_CVT_2020_black.png','1','6','3','1','1','2')");
+        writeData("INSERT INTO vehicle VALUES('','Altis 1.8G CVT','65A1-662.85','4','50','3','Toyota_Altis_1.8G_CVT_2020_red.png','1','6','3','2','1','2')");
+        writeData("INSERT INTO vehicle VALUES('','Hiace','65A1-656.36','16','70','5','Toyota_Hiace_silver.png','1','4','3','3','2','1')");
+        writeData("INSERT INTO vehicle VALUES('','Hiace','65A1-215.61','16','70','5','Toyota_Hiace_white.png','1','4','3','3','2','1')");
+        writeData("INSERT INTO vehicle VALUES('','City','65B1-621.21','4','40','3.5','honda-city_darkblue.jpg','1','5','4','5','1','2')");
+        writeData("INSERT INTO vehicle VALUES('','City','65B1-356.27','4','40','3.5','honda-city-silver.jpg','1','5','4','3','1','2')");
+        writeData("INSERT INTO vehicle VALUES('','Civic','65B1-624.65','4','45','3.5','honda-civic-red.jpg','1','5','4','4','1','2')");
+        writeData("INSERT INTO vehicle VALUES('','Civic','65B1-624.65','4','45','3.5','honda-civic-black.jpg','1','5','4','1','1','2')");
+
+    }
+
+    /**
+     * list of car
+     * @return
+     */
+    public List<vehicle> getCarList(){
+        List<vehicle> lst = new ArrayList<>();
+        Cursor cursor = getData("SELECT * FROM vehicle");
+        while (cursor.moveToNext())
+        {
+            int v_id=cursor.getInt(0);
+            String v_name=cursor.getString(1);
+            String v_licensePlate=cursor.getString(2);
+            int v_seat=cursor.getInt(3);
+            float v_costPerDate=cursor.getFloat(4);
+            float v_costPerKm=cursor.getFloat(5);
+            String v_image=cursor.getString(6);
+            int v_status=cursor.getInt(7);
+            int version=cursor.getInt(8);
+            int branch=cursor.getInt(9);
+            int color=cursor.getInt(10);
+            int fuel=cursor.getInt(11);
+            int gear=cursor.getInt(12);;
+            lst.add(new vehicle(v_id,v_name ,v_licensePlate,v_seat,v_costPerDate,v_costPerKm,v_image,v_status,version,branch,color,fuel,gear));
+        }
+        //adapter.notifyDataSetChanged();
+        return lst;
+    }
+
+    /**
+     * list of version
+     * @return
+     */
+    public List<version> getVesionList(){
+        List<version> lst = new ArrayList<>();
+        Cursor cursor = getData("SELECT * FROM version");
+        while (cursor.moveToNext())
+        {
+            int vs_id=cursor.getInt(0);
+            String version = cursor.getString(1);
+
+            lst.add(new version(vs_id,version));
+        }
+        //adapter.notifyDataSetChanged();
+        return lst;
+    }
+
+    /**
+     * list of branch
+     * @return
+     */
+    public List<branch> getBranchList(){
+        List<branch> lst = new ArrayList<>();
+        Cursor cursor = getData("SELECT * FROM branch");
+        while (cursor.moveToNext())
+        {
+            int br_id=cursor.getInt(0);
+            String br_name = cursor.getString(1);
+            String br_logo = cursor.getString(2);
+
+            lst.add(new branch(br_id,br_name,br_logo));
+        }
+        //adapter.notifyDataSetChanged();
+        return lst;
+    }
     //endregion
 
     //region Area code for Thanh Nha
