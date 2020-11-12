@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 
 import com.example.rentalcar.object.User;
 import com.example.rentalcar.object.branch;
+import com.example.rentalcar.object.color;
 import com.example.rentalcar.object.vehicle;
 import com.example.rentalcar.object.version;
 
@@ -302,7 +303,23 @@ public class Repository extends SQLiteOpenHelper {
         //adapter.notifyDataSetChanged();
         return lst;
     }
+    /**
+     * list of color
+     * @return
+     */
+    public List<color> getColorList(){
+        List<color> lst = new ArrayList<>();
+        Cursor cursor = getData("SELECT * FROM color");
+        while (cursor.moveToNext())
+        {
+            int color_id=cursor.getInt(0);
+            String color = cursor.getString(1);
 
+            lst.add(new color(color_id,color));
+        }
+        //adapter.notifyDataSetChanged();
+        return lst;
+    }
     /**
      * list of branch
      * @return
