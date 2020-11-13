@@ -10,7 +10,8 @@
         android:id="@+id/imgCar"
         android:layout_width="117dp"
         android:layout_height="80dp"
-        android:background="@drawable/Toyota_Hiace_white" />
+
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,8 +28,8 @@
         android:layout_width="65dp"
         android:layout_height="35dp"
         android:layout_below="@+id/txtCarName"
-        android:layout_marginLeft="204dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginLeft="167dp"
+        android:layout_marginTop="13dp"
         android:layout_marginRight="5dp"
         android:layout_toRightOf="@+id/imgCar"
         android:text="Rental"

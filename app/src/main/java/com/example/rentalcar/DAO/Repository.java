@@ -246,16 +246,6 @@ public class Repository extends SQLiteOpenHelper {
     public void insertDataCar()
     {
 
-
-
-
-
-
-        //v_id INTEGER PRIMARY KEY AUTOINCREMENT, v_name TEXT ,v_licensePlate TEXT, " +
-        //                " v_seat INTEGER, v_costPerDate FLOAT, v_costPerKm FLOAT, v_image TEXT, v_status INTEGER, version INTEGER, " +
-        //                " branch INTEGER, color INTEGER, fuel INTEGER, gear INTEGER
-
-
     }
 
     /**
@@ -286,6 +276,29 @@ public class Repository extends SQLiteOpenHelper {
         return lst;
     }
 
+    public List<vehicle> search(String name){
+        List<vehicle> lst = new ArrayList<>();
+        Cursor cursor = getData("SELECT * FROM vehicle WHERE v_name LIKE '%"+name+"%'");
+        while (cursor.moveToNext())
+        {
+            int v_id=cursor.getInt(0);
+            String v_name=cursor.getString(1);
+            String v_licensePlate=cursor.getString(2);
+            int v_seat=cursor.getInt(3);
+            float v_costPerDate=cursor.getFloat(4);
+            float v_costPerKm=cursor.getFloat(5);
+            String v_image=cursor.getString(6);
+            int v_status=cursor.getInt(7);
+            int version=cursor.getInt(8);
+            int branch=cursor.getInt(9);
+            int color=cursor.getInt(10);
+            int fuel=cursor.getInt(11);
+            int gear=cursor.getInt(12);;
+            lst.add(new vehicle(v_id,v_name ,v_licensePlate,v_seat,v_costPerDate,v_costPerKm,v_image,v_status,version,branch,color,fuel,gear));
+        }
+        //adapter.notifyDataSetChanged();
+        return lst;
+    }
     /**
      * list of version
      * @return

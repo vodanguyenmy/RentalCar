@@ -55,10 +55,13 @@ public class listCarAdapter extends BaseAdapter {
         ImageView imageView = (ImageView) view.findViewById(R.id.imgCar);
         Button btnRental = (Button) view.findViewById(R.id.btnRentalCar);
 
-
+        //int i = R.drawable.;
         vehicle c = lst.get(position);
         tvnameCar.setText(c.getV_name());
-        //imageView.setIma
+
+        int iconResource = context.getResources().getIdentifier(c.getV_image() , "drawable", context.getPackageName());
+        //Log.i(TAG, "---getView: "+iconResource);
+        imageView.setImageResource(iconResource);
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
