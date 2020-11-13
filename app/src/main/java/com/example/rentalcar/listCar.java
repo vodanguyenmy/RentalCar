@@ -17,11 +17,13 @@ public class listCar extends AppCompatActivity {
     List<vehicle> lstCar;
     Repository repository;
     listCarAdapter listCarAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_car);
         carListView = (ListView) findViewById(R.id.listViewCar);
+
 
 
         repository = new Repository(this,"rental_car.sqlite",null,1);
@@ -30,16 +32,6 @@ public class listCar extends AppCompatActivity {
         lstCar = repository.getCarList();
         listCarAdapter = new listCarAdapter(this, R.layout.dong_list_car, lstCar);
         carListView.setAdapter(listCarAdapter);
-        /**
-         * courseHelper = new CourseHelper(this, "PE_CE130115_VODANGUYENMY.sqlite", null, 1);
-         *         //createAndInsert();
-         *         lst = new ArrayList<>();
-         *         getData();
-         *         adapter = new CourseAdapter(this, R.layout.row, lst);
-         *
-         *         lv = (ListView) findViewById(R.id.listViewCourse);
-         *         lv.setAdapter(adapter);
-         */
-
     }
 }
+

@@ -65,7 +65,7 @@ public class listCarAdapter extends BaseAdapter {
         tvnameCar.setText(c.getV_name());
 
         int iconResource = context.getResources().getIdentifier(c.getV_image() , "drawable", context.getPackageName());
-        Log.i(TAG, "---getView: "+iconResource);
+        //Log.i(TAG, "---getView: "+iconResource);
         imageView.setImageResource(iconResource);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
