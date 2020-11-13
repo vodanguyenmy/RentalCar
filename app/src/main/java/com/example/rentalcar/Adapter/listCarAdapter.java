@@ -1,6 +1,8 @@
 package com.example.rentalcar.Adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,9 @@ import com.example.rentalcar.R;
 import com.example.rentalcar.object.vehicle;
 
 import java.util.List;
+
+import static android.service.controls.ControlsProviderService.TAG;
+
 
 public class listCarAdapter extends BaseAdapter {
     private Context context;
@@ -55,11 +60,13 @@ public class listCarAdapter extends BaseAdapter {
         ImageView imageView = (ImageView) view.findViewById(R.id.imgCar);
         Button btnRental = (Button) view.findViewById(R.id.btnRentalCar);
 
-
+        //int i = R.drawable.;
         vehicle c = lst.get(position);
         tvnameCar.setText(c.getV_name());
-        //imageView.setImageResource();
 
+        int iconResource = context.getResources().getIdentifier(c.getV_image() , "drawable", context.getPackageName());
+        Log.i(TAG, "---getView: "+iconResource);
+        imageView.setImageResource(iconResource);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

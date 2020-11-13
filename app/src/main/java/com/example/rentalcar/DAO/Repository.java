@@ -24,13 +24,13 @@ public class Repository extends SQLiteOpenHelper {
 
     private Context context;
     public Repository(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, DATABASE_NAME, null, 1);
-        this.context = context;
+        super(context, name, factory, version);
+        //this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        InitializeTable(db);
+
     }
 
     //region Generate table and data into database
@@ -219,11 +219,41 @@ public class Repository extends SQLiteOpenHelper {
     }
 
     public void insertDataCar()
-    {
-        writeData("INSERT INTO branch VALUES('','BMW', 'bmw.png')");
-        writeData("INSERT INTO branch VALUES('','Porscher', 'porsche.png')");
-        writeData("INSERT INTO branch VALUES('','Toyota', 'toyota.png')");
-        writeData("INSERT INTO branch VALUES('','Honda', 'honda.png')");
+    { //Create table vehicle
+        String queryCreateVehicle = " CREATE TABLE IF NOT EXISTS vehicle(v_id INTEGER PRIMARY KEY AUTOINCREMENT, v_name TEXT, v_licensePlate TEXT, " +
+                " v_seat INTEGER, v_costPerDate FLOAT, v_costPerKm FLOAT, v_image TEXT, v_status INTEGER, version INTEGER, " +
+                " branch INTEGER, color INTEGER, fuel INTEGER, gear INTEGER); ";
+        writeData(queryCreateVehicle);
+
+        //Create table branch
+        String queryCreateBranch = " CREATE TABLE IF NOT EXISTS branch(br_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                " br_name TEXT, br_logo TEXT); ";
+        writeData(queryCreateBranch);
+
+        //Create table version
+        String queryCreateVersion = " CREATE TABLE IF NOT EXISTS version(vs_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                " version TEXT); ";
+        writeData(queryCreateVersion);
+
+        //Create table color
+        String queryCreateColor = " CREATE TABLE IF NOT EXISTS color(col_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                " color TEXT); ";
+        writeData(queryCreateColor);
+
+        //Create table fuel
+        String queryCreateFuel = " CREATE TABLE IF NOT EXISTS fuel(f_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                " fuel TEXT); ";
+        writeData(queryCreateFuel);
+
+        //Create table gear
+        String queryCreateGear = " CREATE TABLE IF NOT EXISTS gear(g_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                " gear TEXT); ";
+        writeData(queryCreateGear);
+        /*
+        writeData("INSERT INTO branch VALUES('','BMW', 'bmw')");
+        writeData("INSERT INTO branch VALUES('','Porscher', 'porsche')");
+        writeData("INSERT INTO branch VALUES('','Toyota', 'toyota')");
+        writeData("INSERT INTO branch VALUES('','Honda', 'honda')");
 
         writeData("INSERT INTO version VALUES('','2015')");
         writeData("INSERT INTO version VALUES('','2016')");
@@ -246,15 +276,17 @@ public class Repository extends SQLiteOpenHelper {
         //v_id INTEGER PRIMARY KEY AUTOINCREMENT, v_name TEXT ,v_licensePlate TEXT, " +
         //                " v_seat INTEGER, v_costPerDate FLOAT, v_costPerKm FLOAT, v_image TEXT, v_status INTEGER, version INTEGER, " +
         //                " branch INTEGER, color INTEGER, fuel INTEGER, gear INTEGER
-
-        writeData("INSERT INTO vehicle VALUES('','Toyota Altis 1.8G CVT Black','65A1-262.95','4','50','3','Toyota_Altis_black.png','1','6','3','1','1','2')");
-        writeData("INSERT INTO vehicle VALUES('','Totota Altis 1.8G CVT Red','65A1-662.85','4','50','3','Toyota_Altis_red.png','1','6','3','2','1','2')");
-        writeData("INSERT INTO vehicle VALUES('','Toyota Hiace Silver','65A1-656.36','16','70','5','Toyota_Hiace_silver.png','1','4','3','3','2','1')");
-        writeData("INSERT INTO vehicle VALUES('','Toyota Hiace White','65A1-215.61','16','70','5','Toyota_Hiace_white.png','1','4','3','3','2','1')");
-        writeData("INSERT INTO vehicle VALUES('','Honda City Darkblue','65B1-621.21','4','40','3.5','honda-city_darkblue.jpg','1','5','4','5','1','2')");
-        writeData("INSERT INTO vehicle VALUES('','Honda City Silver','65B1-356.27','4','40','3.5','honda-city-silver.jpg','1','5','4','3','1','2')");
-        writeData("INSERT INTO vehicle VALUES('','Honda Civic Red','65B1-624.65','4','45','3.5','honda-civic-red.jpg','1','5','4','4','1','2')");
-        writeData("INSERT INTO vehicle VALUES('','Honda Civic Black','65B1-624.65','4','45','3.5','honda-civic-black.jpg','1','5','4','1','1','2')");
+*///" CREATE TABLE IF NOT EXISTS vehicle(v_id INTEGER PRIMARY KEY AUTOINCREMENT, v_name TEXT, v_licensePlate TEXT, " +
+        //" v_seat INTEGER, v_costPerDate FLOAT, v_costPerKm FLOAT, v_image TEXT, v_status INTEGER, version INTEGER, " +
+        //        " branch INTEGER, color INTEGER, fuel INTEGER, gear INTEGER); ";
+        writeData("INSERT INTO vehicle VALUES(NULL,'Toyota Altis 1.8G CVT Black','65A1-262.95',4,50,3,'toyota_altis_black',1,6,3,1,1,2)");
+        writeData("INSERT INTO vehicle VALUES(NULL,'Totota Altis 1.8G CVT Red','65A1-662.85',4,50,3,'toyota_altis_red',1,6,3,2,1,2)");
+        writeData("INSERT INTO vehicle VALUES(NULL,'Toyota Hiace Silver','65A1-656.36',16,70,5,'toyota_hiace_silver',1,4,3,3,2,1)");
+        writeData("INSERT INTO vehicle VALUES(NULL,'Toyota Hiace White','65A1-215.61',16,70,5,'toyota_hiace_white',1,4,3,3,2,1)");
+        writeData("INSERT INTO vehicle VALUES(NULL,'Honda City Darkblue','65B1-621.21',4,40,3.5,'honda_city_darkblue',1,5,4,5,1,2)");
+        writeData("INSERT INTO vehicle VALUES(NULL,'Honda City Silver','65B1-356.27',4,40,3.5,'honda_city_silver',1,5,4,3,1,2)");
+        writeData("INSERT INTO vehicle VALUES(NULL,'Honda Civic Red','65B1-624.65',4,45,3.5,'honda_civic_red',1,5,4,4,1,2)");
+        writeData("INSERT INTO vehicle VALUES(NULL,'Honda Civic Black','65B1-624.65',4,45,3.5,'honda_civic_black',1,5,4,1,1,2)");
 
     }
 
