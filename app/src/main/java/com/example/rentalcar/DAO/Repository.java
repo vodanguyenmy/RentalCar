@@ -247,8 +247,8 @@ public class Repository extends SQLiteOpenHelper {
         //                " v_seat INTEGER, v_costPerDate FLOAT, v_costPerKm FLOAT, v_image TEXT, v_status INTEGER, version INTEGER, " +
         //                " branch INTEGER, color INTEGER, fuel INTEGER, gear INTEGER
 
-        writeData("INSERT INTO vehicle VALUES('','Toyota Altis 1.8G CVT Black','65A1-262.95','4','50','3','Toyota_Altis_1.8G_CVT_2020_black.png','1','6','3','1','1','2')");
-        writeData("INSERT INTO vehicle VALUES('','Totota Altis 1.8G CVT Red','65A1-662.85','4','50','3','Toyota_Altis_1.8G_CVT_2020_red.png','1','6','3','2','1','2')");
+        writeData("INSERT INTO vehicle VALUES('','Toyota Altis 1.8G CVT Black','65A1-262.95','4','50','3','Toyota_Altis_black.png','1','6','3','1','1','2')");
+        writeData("INSERT INTO vehicle VALUES('','Totota Altis 1.8G CVT Red','65A1-662.85','4','50','3','Toyota_Altis_red.png','1','6','3','2','1','2')");
         writeData("INSERT INTO vehicle VALUES('','Toyota Hiace Silver','65A1-656.36','16','70','5','Toyota_Hiace_silver.png','1','4','3','3','2','1')");
         writeData("INSERT INTO vehicle VALUES('','Toyota Hiace White','65A1-215.61','16','70','5','Toyota_Hiace_white.png','1','4','3','3','2','1')");
         writeData("INSERT INTO vehicle VALUES('','Honda City Darkblue','65B1-621.21','4','40','3.5','honda-city_darkblue.jpg','1','5','4','5','1','2')");

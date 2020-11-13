@@ -10,7 +10,7 @@
         android:id="@+id/imgCar"
         android:layout_width="117dp"
         android:layout_height="80dp"
-        android:background="@drawable/Toyota_Hiace_white" />
+        android:background="@drawable/honda-civic-black" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -58,7 +58,7 @@ public class listCarAdapter extends BaseAdapter {
 
         vehicle c = lst.get(position);
         tvnameCar.setText(c.getV_name());
-        //imageView.setIma
+        //imageView.setImageResource();
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
