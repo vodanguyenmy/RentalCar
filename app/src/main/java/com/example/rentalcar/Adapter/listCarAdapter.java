@@ -5,8 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.rentalcar.R;
 import com.example.rentalcar.object.vehicle;
 
 import java.util.List;
@@ -48,9 +51,14 @@ public class listCarAdapter extends BaseAdapter {
         else
             view = convertView;
 
-        //TextView tvname = (TextView) view.findViewById(R.id.textViewName);
-        //final Course c = lst.get(position);
-        //tvname.setText(c.getName());
+        TextView tvnameCar = (TextView) view.findViewById(R.id.txtCarName);
+        ImageView imageView = (ImageView) view.findViewById(R.id.imgCar);
+        Button btnRental = (Button) view.findViewById(R.id.btnRentalCar);
+
+
+        vehicle c = lst.get(position);
+        tvnameCar.setText(c.getV_name());
+        //imageView.setIma
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="5dp"
+    android:layout_marginTop="5dp"
+    >
+
+    <ImageView
+        android:id="@+id/imgCar"
+        android:layout_width="117dp"
+        android:layout_height="80dp"
+        android:background="@drawable/Toyota_Hiace_white" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtCarName"
+        android:textStyle="bold"
+        android:text="Toyota Altis 1.8 CTV Black"
+        android:layout_toRightOf="@+id/imgCar"
+        android:textSize="21dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"/>
+
+    <Button
+        android:id="@+id/btnRentalCar"
+        android:layout_width="65dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/txtCarName"
+        android:layout_marginLeft="204dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@+id/imgCar"
+        android:text="Rental"
+        android:textSize="10dp" />
+
+</RelativeLayout>
